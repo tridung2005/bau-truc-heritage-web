@@ -4,6 +4,7 @@ import { ClayImage } from "@/components/ClayImage";
 import { Reveal } from "@/components/Reveal";
 import { SectionTitle } from "@/components/PageHero";
 import { PotIcon } from "@/components/PotIcon";
+import heroPottery from "@/assets/hero-pottery.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
