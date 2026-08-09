@@ -55,8 +55,14 @@ function Home() {
       {/* Hero */}
       <section className="grain relative isolate flex min-h-screen items-center overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <ClayImage seed="baotruc-hero-clay" alt="Nghệ nhân Chăm tạo hình gốm bằng tay" w={1800} h={1200} className="rounded-none" />
-          <div className="absolute inset-0 bg-background/78" />
+          <img
+            src={heroPottery}
+            alt="Nghệ nhân Chăm tạo hình gốm bằng tay"
+            width={1600}
+            height={1008}
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-background/72" />
         </div>
 
         <div className="absolute right-5 top-24 z-10 lg:right-8">
