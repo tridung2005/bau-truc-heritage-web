@@ -80,6 +80,35 @@
   --ring: var(--clay);
 }
 
+.dark {
+  --espresso: oklch(0.16 0.018 55);
+  --clay: oklch(0.70 0.115 55);
+  --wood: oklch(0.74 0.062 62);
+  --sand: oklch(0.255 0.026 58);
+  --gold: oklch(0.78 0.095 78);
+  --paper: oklch(0.96 0.012 78);
+
+  --background: oklch(0.195 0.022 56);
+  --foreground: oklch(0.945 0.016 78);
+  --card: var(--sand);
+  --card-foreground: oklch(0.945 0.016 78);
+  --popover: oklch(0.235 0.024 57);
+  --popover-foreground: oklch(0.945 0.016 78);
+  --primary: var(--clay);
+  --primary-foreground: oklch(0.17 0.02 55);
+  --secondary: var(--sand);
+  --secondary-foreground: oklch(0.945 0.016 78);
+  --muted: var(--sand);
+  --muted-foreground: oklch(0.755 0.026 70);
+  --accent: var(--gold);
+  --accent-foreground: oklch(0.17 0.02 55);
+  --destructive: oklch(0.62 0.19 28);
+  --destructive-foreground: oklch(0.97 0.01 78);
+  --border: oklch(0.33 0.026 60);
+  --input: oklch(0.33 0.026 60);
+  --ring: var(--clay);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
