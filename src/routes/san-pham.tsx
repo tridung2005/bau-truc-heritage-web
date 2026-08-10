@@ -1,9 +1,18 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight } from "lucide-react";
-import { ClayImage } from "@/components/ClayImage";
+import { ArrowRight, ShoppingBag } from "lucide-react";
+import { toast } from "sonner";
 import { Reveal } from "@/components/Reveal";
 import { PageHero } from "@/components/PageHero";
+import { useI18n } from "@/lib/i18n";
+import { useCart } from "@/lib/cart";
+import pVase from "@/assets/p-vase.jpg";
+import pTea from "@/assets/p-tea.jpg";
+import pApsara from "@/assets/p-apsara.jpg";
+import pJug from "@/assets/p-jug.jpg";
+import pPlate from "@/assets/p-plate.jpg";
+import pUnique from "@/assets/p-unique.jpg";
+import pKit from "@/assets/p-kit.jpg";
 
 export const Route = createFileRoute("/san-pham")({
   head: () => ({
@@ -24,77 +33,116 @@ export const Route = createFileRoute("/san-pham")({
   component: Products,
 });
 
-const FILTERS = ["Tất Cả", "Trang Trí", "Gia Dụng", "Độc Bản", "Workshop"] as const;
+const FILTERS = [
+  { key: "all", vi: "Tất Cả", en: "All" },
+  { key: "deco", vi: "Trang Trí", en: "Decorative" },
+  { key: "home", vi: "Gia Dụng", en: "Homeware" },
+  { key: "unique", vi: "Độc Bản", en: "One-of-a-kind" },
+  { key: "workshop", vi: "Workshop", en: "Workshop" },
+] as const;
 
 const PRODUCTS = [
   {
+    id: "vase",
     vi: "Bình Cắm Hoa Chăm",
     en: "Cham Flower Vase",
-    cat: "Trang Trí",
-    desc: "Dáng bình cổ cao, hoa văn sóng nước khắc tay, vệt lửa nung loang tự nhiên.",
-    price: "850.000₫ – 1.400.000₫",
-    seed: "sp-vase",
+    cat: "deco",
+    descVi: "Dáng bình cổ cao, hoa văn sóng nước khắc tay, vệt lửa nung loang tự nhiên.",
+    descEn: "Tall-necked vase with hand-carved wave motifs and natural fire marks.",
+    price: 850000,
+    priceVi: "850.000₫ – 1.400.000₫",
+    priceEn: "850,000₫ – 1,400,000₫",
+    img: pVase,
   },
   {
+    id: "tea",
     vi: "Chén Uống Trà",
     en: "Tea Bowl Set",
-    cat: "Gia Dụng",
-    desc: "Bộ 4 chén mộc, thành mỏng, giữ nhiệt tốt, chạm tay ấm và nhám nhẹ.",
-    price: "520.000₫ / bộ",
-    seed: "sp-tea",
+    cat: "home",
+    descVi: "Bộ 4 chén mộc, thành mỏng, giữ nhiệt tốt, chạm tay ấm và nhám nhẹ.",
+    descEn: "Set of 4 unglazed bowls — thin walls, warm to the touch, great heat retention.",
+    price: 520000,
+    priceVi: "520.000₫ / bộ",
+    priceEn: "520,000₫ / set",
+    img: pTea,
   },
   {
+    id: "apsara",
     vi: "Tượng Vũ Nữ Chăm",
     en: "Cham Dancer Figurine",
-    cat: "Trang Trí",
-    desc: "Tượng Apsara nặn tay, mô phỏng điêu khắc tháp Chăm cổ.",
-    price: "Liên hệ để biết giá",
-    seed: "sp-apsara",
+    cat: "deco",
+    descVi: "Tượng Apsara nặn tay, mô phỏng điêu khắc tháp Chăm cổ.",
+    descEn: "Hand-sculpted Apsara inspired by ancient Cham tower reliefs.",
+    price: 0,
+    priceVi: "Liên hệ để biết giá",
+    priceEn: "Price on request",
+    img: pApsara,
   },
   {
+    id: "jug",
     vi: "Bình Nước Truyền Thống",
     en: "Traditional Water Jug",
-    cat: "Gia Dụng",
-    desc: "Bình đựng nước kiểu Chăm cổ, thành gốm xốp giúp nước luôn mát.",
-    price: "680.000₫",
-    seed: "sp-jug",
+    cat: "home",
+    descVi: "Bình đựng nước kiểu Chăm cổ, thành gốm xốp giúp nước luôn mát.",
+    descEn: "Classic Cham water jug; porous clay keeps water naturally cool.",
+    price: 680000,
+    priceVi: "680.000₫",
+    priceEn: "680,000₫",
+    img: pJug,
   },
   {
+    id: "plate",
     vi: "Đĩa Trang Trí",
     en: "Decorative Plate",
-    cat: "Trang Trí",
-    desc: "Đĩa treo tường khắc hoa văn hình học Chăm, đường kính 28cm.",
-    price: "450.000₫",
-    seed: "sp-plate",
+    cat: "deco",
+    descVi: "Đĩa treo tường khắc hoa văn hình học Chăm, đường kính 28cm.",
+    descEn: "Wall plate carved with Cham geometric patterns, 28cm diameter.",
+    price: 450000,
+    priceVi: "450.000₫",
+    priceEn: "450,000₫",
+    img: pPlate,
   },
   {
+    id: "unique",
     vi: "Lọ Hoa Độc Bản",
     en: "One-of-a-kind Vase",
-    cat: "Độc Bản",
+    cat: "unique",
     unique: true,
-    desc: "Tác phẩm duy nhất, kèm Certificate of Authenticity ghi tên nghệ nhân.",
-    price: "Liên hệ để biết giá",
-    seed: "sp-unique",
+    descVi: "Tác phẩm duy nhất, kèm Certificate of Authenticity ghi tên nghệ nhân.",
+    descEn: "A single unrepeatable piece with a Certificate of Authenticity.",
+    price: 0,
+    priceVi: "Liên hệ để biết giá",
+    priceEn: "Price on request",
+    img: pUnique,
   },
   {
+    id: "kit",
     vi: "Bộ Kit Workshop",
     en: "Workshop Clay Kit",
-    cat: "Workshop",
-    desc: "Đất sét Nu Lanh, vòng tre và dụng cụ miết — dùng trong buổi trải nghiệm.",
-    price: "Bao gồm trong workshop",
-    seed: "sp-kit",
+    cat: "workshop",
+    descVi: "Đất sét Nu Lanh, vòng tre và dụng cụ miết — dùng trong buổi trải nghiệm.",
+    descEn: "Nu Lanh clay, bamboo ring and smoothing tools used in the workshop.",
+    price: 0,
+    priceVi: "Bao gồm trong workshop",
+    priceEn: "Included in the workshop",
+    img: pKit,
   },
 ];
 
 function Products() {
-  const [active, setActive] = useState<string>("Tất Cả");
-  const list = active === "Tất Cả" ? PRODUCTS : PRODUCTS.filter((p) => p.cat === active);
+  const { t, lang } = useI18n();
+  const { add, setOpen } = useCart();
+  const [active, setActive] = useState<string>("all");
+  const list = active === "all" ? PRODUCTS : PRODUCTS.filter((p) => p.cat === active);
 
   return (
     <main>
       <PageHero
-        title="Từng Sản Phẩm — Một Câu Chuyện"
-        subtitle="Gốm nặn tay, nung lộ thiên bằng rơm và củi. Không sản phẩm nào giống sản phẩm nào."
+        title={t("Từng Sản Phẩm — Một Câu Chuyện", "Every Piece — A Story")}
+        subtitle={t(
+          "Gốm nặn tay, nung lộ thiên bằng rơm và củi. Không sản phẩm nào giống sản phẩm nào.",
+          "Hand-shaped pottery, open-fired with straw and wood. No two pieces are alike.",
+        )}
         seed="products-hero"
       />
 
@@ -102,43 +150,72 @@ function Products() {
         <div className="flex flex-wrap gap-3 border-b border-primary/30 pb-6">
           {FILTERS.map((f) => (
             <button
-              key={f}
+              key={f.key}
               type="button"
-              onClick={() => setActive(f)}
+              onClick={() => setActive(f.key)}
               className={`rounded-sm border px-5 py-2 text-sm transition-colors ${
-                active === f
+                active === f.key
                   ? "border-primary bg-primary text-primary-foreground"
                   : "border-border text-muted-foreground hover:border-primary hover:text-primary"
               }`}
             >
-              {f}
+              {t(f.vi, f.en)}
             </button>
           ))}
         </div>
 
         <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((p, i) => (
-            <Reveal key={p.vi} delay={i * 70} as="article">
+            <Reveal key={p.id} delay={i * 70} as="article">
               <div className="flex h-full flex-col rounded-sm border border-border bg-card transition-shadow duration-300 hover:shadow-[0_14px_36px_rgba(44,26,14,0.16)]">
                 <div className="relative aspect-square overflow-hidden rounded-t-sm">
-                  <ClayImage seed={p.seed} alt={`${p.vi} — ${p.en}`} w={700} h={700} className="rounded-none" />
+                  <img
+                    src={p.img}
+                    alt={`${p.vi} — ${p.en}`}
+                    width={700}
+                    height={700}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
                   {p.unique && (
                     <span className="absolute left-4 top-4 rounded-sm bg-accent px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-accent-foreground">
-                      Độc Bản
+                      {t("Độc Bản", "Unique")}
                     </span>
                   )}
                 </div>
                 <div className="flex flex-1 flex-col p-6">
-                  <h3 className="font-display text-xl">{p.vi}</h3>
-                  <p className="mt-0.5 font-serif text-sm italic text-wood">{p.en}</p>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{p.desc}</p>
-                  <p className="mt-4 text-sm text-primary">{p.price}</p>
-                  <Link
-                    to="/lien-he"
-                    className="mt-5 inline-flex w-fit items-center gap-2 rounded-sm border border-primary px-5 py-2.5 text-sm text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
-                  >
-                    Tìm Hiểu Thêm <ArrowRight className="h-4 w-4" />
-                  </Link>
+                  <h3 className="font-display text-xl">{t(p.vi, p.en)}</h3>
+                  <p className="mt-0.5 font-serif text-sm italic text-wood">{lang === "vi" ? p.en : p.vi}</p>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                    {t(p.descVi, p.descEn)}
+                  </p>
+                  <p className="mt-4 text-sm text-primary">{t(p.priceVi, p.priceEn)}</p>
+                  <div className="mt-5 flex flex-wrap gap-3">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        add({ id: p.id, nameVi: p.vi, nameEn: p.en, price: p.price, image: p.img });
+                        toast.success(
+                          t(`Đã thêm "${p.vi}" vào giỏ hàng.`, `Added "${p.en}" to your cart.`),
+                          {
+                            action: {
+                              label: t("Xem giỏ", "View cart"),
+                              onClick: () => setOpen(true),
+                            },
+                          },
+                        );
+                      }}
+                      className="inline-flex items-center gap-2 rounded-sm bg-primary px-5 py-2.5 text-sm text-primary-foreground transition-colors hover:bg-wood"
+                    >
+                      <ShoppingBag className="h-4 w-4" /> {t("Thêm Vào Giỏ", "Add to Cart")}
+                    </button>
+                    <Link
+                      to="/lien-he"
+                      className="inline-flex items-center gap-2 rounded-sm border border-primary px-5 py-2.5 text-sm text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                    >
+                      {t("Tìm Hiểu Thêm", "Learn More")} <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </Reveal>
@@ -147,13 +224,16 @@ function Products() {
 
         <Reveal className="mt-20 rounded-sm border border-primary/35 bg-card p-10 text-center">
           <p className="font-serif text-xl italic text-wood">
-            Cần sản phẩm theo yêu cầu? Chúng tôi nhận đặt hàng độc bản.
+            {t(
+              "Cần sản phẩm theo yêu cầu? Chúng tôi nhận đặt hàng độc bản.",
+              "Need something custom? We accept commissions for one-of-a-kind pieces.",
+            )}
           </p>
           <Link
             to="/lien-he"
             className="mt-6 inline-flex items-center gap-2 rounded-sm bg-primary px-7 py-3.5 text-sm text-primary-foreground transition-colors hover:bg-wood"
           >
-            Liên Hệ Đặt Hàng <ArrowRight className="h-4 w-4" />
+            {t("Liên Hệ Đặt Hàng", "Contact to Order")} <ArrowRight className="h-4 w-4" />
           </Link>
         </Reveal>
       </section>
