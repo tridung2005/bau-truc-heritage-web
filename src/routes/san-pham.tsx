@@ -207,13 +207,14 @@ function Products() {
                       }}
                       className="inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-4 py-2.5 text-xs text-primary-foreground transition-colors hover:bg-wood sm:px-5 sm:text-sm"
                     >
-                      <ShoppingBag className="h-4 w-4" /> {t("Thêm Vào Giỏ", "Add to Cart")}
+                      <ShoppingBag className="hidden h-4 w-4 sm:block" />
+                      <span className="whitespace-nowrap">{t("Thêm Vào Giỏ", "Add to Cart")}</span>
                     </button>
                     <Link
                       to="/lien-he"
                       className="inline-flex items-center justify-center gap-2 rounded-sm border border-primary px-4 py-2.5 text-xs text-primary transition-colors hover:bg-primary hover:text-primary-foreground sm:px-5 sm:text-sm"
                     >
-                      {t("Tìm Hiểu Thêm", "Learn More")} <ArrowRight className="h-4 w-4" />
+                      <span className="whitespace-nowrap">{t("Tìm Hiểu Thêm", "Learn More")}</span> <ArrowRight className="h-4 w-4 shrink-0" />
                     </Link>
                   </div>
                 </div>
