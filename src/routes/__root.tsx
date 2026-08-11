@@ -16,6 +16,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { Toaster } from "@/components/ui/sonner";
 import { CartSheet } from "@/components/CartSheet";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { MobileActionBar } from "@/components/MobileActionBar";
 import { I18nProvider } from "@/lib/i18n";
 import { ThemeProvider } from "@/lib/theme";
 import { CartProvider } from "@/lib/cart";
@@ -129,8 +130,11 @@ function RootComponent() {
           <CartProvider>
             <SiteHeader />
             {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-            <Outlet />
+            <div className="pb-[68px] lg:pb-0">
+              <Outlet />
+            </div>
             <SiteFooter />
+            <MobileActionBar />
             <CartSheet />
             <ScrollToTop />
             <Toaster />

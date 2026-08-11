@@ -1,5 +1,5 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import { CalendarDays, MessageCircle, Phone, ShoppingBag } from "lucide-react";
+import { CalendarDays, LayoutGrid, Phone, ShoppingBag } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n";
 import { useCart } from "@/lib/cart";
@@ -20,7 +20,7 @@ export function MobileActionBar() {
           to="/san-pham"
           className={cn(base, pathname === "/san-pham" ? "text-primary" : "text-foreground/70")}
         >
-          <ShoppingBag className="h-5 w-5" />
+          <LayoutGrid className="h-5 w-5" />
           {t("Sản phẩm", "Shop")}
         </Link>
         <Link
@@ -35,7 +35,7 @@ export function MobileActionBar() {
           {t("Gọi", "Call")}
         </a>
         <button type="button" onClick={() => setOpen(true)} className={cn(base, "relative text-foreground/70")}>
-          <MessageCircle className="h-5 w-5" />
+          <ShoppingBag className="h-5 w-5" />
           {t("Giỏ hàng", "Cart")}
           {count > 0 && (
             <span className="absolute right-3 top-1 min-w-4 rounded-full bg-primary px-1 text-[10px] leading-4 text-primary-foreground">
