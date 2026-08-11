@@ -164,7 +164,7 @@ function Products() {
           ))}
         </div>
 
-        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-2 gap-4 sm:mt-12 sm:gap-8 lg:grid-cols-3">
           {list.map((p, i) => (
             <Reveal key={p.id} delay={i * 70} as="article">
               <div className="flex h-full flex-col rounded-sm border border-border bg-card transition-shadow duration-300 hover:shadow-[0_14px_36px_rgba(44,26,14,0.16)]">
@@ -178,19 +178,19 @@ function Products() {
                     className="h-full w-full object-cover"
                   />
                   {p.unique && (
-                    <span className="absolute left-4 top-4 rounded-sm bg-accent px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-accent-foreground">
+                    <span className="absolute left-2.5 top-2.5 rounded-sm bg-accent px-2 py-1 text-[9px] uppercase tracking-[0.14em] text-accent-foreground sm:left-4 sm:top-4 sm:px-3 sm:text-[11px]">
                       {t("Độc Bản", "Unique")}
                     </span>
                   )}
                 </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="font-display text-xl">{t(p.vi, p.en)}</h3>
-                  <p className="mt-0.5 font-serif text-sm italic text-wood">{lang === "vi" ? p.en : p.vi}</p>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+                <div className="flex flex-1 flex-col p-4 sm:p-6">
+                  <h3 className="font-display text-base leading-snug sm:text-xl">{t(p.vi, p.en)}</h3>
+                  <p className="mt-0.5 font-serif text-xs italic text-wood sm:text-sm">{lang === "vi" ? p.en : p.vi}</p>
+                  <p className="mt-2 line-clamp-3 flex-1 text-xs leading-relaxed text-muted-foreground sm:mt-3 sm:line-clamp-none sm:text-sm">
                     {t(p.descVi, p.descEn)}
                   </p>
-                  <p className="mt-4 text-sm text-primary">{t(p.priceVi, p.priceEn)}</p>
-                  <div className="mt-5 flex flex-wrap gap-3">
+                  <p className="mt-3 text-sm text-primary sm:mt-4">{t(p.priceVi, p.priceEn)}</p>
+                  <div className="mt-4 flex flex-col gap-2 sm:mt-5 sm:flex-row sm:flex-wrap sm:gap-3">
                     <button
                       type="button"
                       onClick={() => {
@@ -205,13 +205,13 @@ function Products() {
                           },
                         );
                       }}
-                      className="inline-flex items-center gap-2 rounded-sm bg-primary px-5 py-2.5 text-sm text-primary-foreground transition-colors hover:bg-wood"
+                      className="inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-4 py-2.5 text-xs text-primary-foreground transition-colors hover:bg-wood sm:px-5 sm:text-sm"
                     >
                       <ShoppingBag className="h-4 w-4" /> {t("Thêm Vào Giỏ", "Add to Cart")}
                     </button>
                     <Link
                       to="/lien-he"
-                      className="inline-flex items-center gap-2 rounded-sm border border-primary px-5 py-2.5 text-sm text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                      className="inline-flex items-center justify-center gap-2 rounded-sm border border-primary px-4 py-2.5 text-xs text-primary transition-colors hover:bg-primary hover:text-primary-foreground sm:px-5 sm:text-sm"
                     >
                       {t("Tìm Hiểu Thêm", "Learn More")} <ArrowRight className="h-4 w-4" />
                     </Link>
@@ -222,7 +222,7 @@ function Products() {
           ))}
         </div>
 
-        <Reveal className="mt-20 rounded-sm border border-primary/35 bg-card p-10 text-center">
+        <Reveal className="mt-14 rounded-sm border border-primary/35 bg-card p-6 text-center sm:mt-20 sm:p-10">
           <p className="font-serif text-xl italic text-wood">
             {t(
               "Cần sản phẩm theo yêu cầu? Chúng tôi nhận đặt hàng độc bản.",
