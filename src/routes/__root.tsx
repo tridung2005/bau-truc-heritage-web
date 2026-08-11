@@ -130,9 +130,7 @@ function RootComponent() {
           <CartProvider>
             <SiteHeader />
             {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-            <div className="pb-[68px] lg:pb-0">
-              <Outlet />
-            </div>
+            <Outlet />
             <SiteFooter />
             <MobileActionBar />
             <CartSheet />
