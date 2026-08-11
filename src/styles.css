@@ -17,9 +17,9 @@
   --radius-2xl: 8px;
   --radius-3xl: 8px;
   --radius-4xl: 8px;
-  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
-  --font-display: "Playfair Display", Georgia, serif;
-  --font-sans: "DM Sans", "Inter", system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", "Be Vietnam Pro", Georgia, serif;
+  --font-display: "Playfair Display", "Be Vietnam Pro", Georgia, serif;
+  --font-sans: "Be Vietnam Pro", "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
