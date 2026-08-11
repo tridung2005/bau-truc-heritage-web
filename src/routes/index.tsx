@@ -84,7 +84,7 @@ function Home() {
   return (
     <main>
       {/* Hero */}
-      <section className="grain relative isolate flex min-h-screen items-center overflow-hidden">
+      <section className="grain relative isolate flex min-h-[88svh] items-center sm:min-h-screen overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <img
             src={heroPottery}
@@ -96,18 +96,18 @@ function Home() {
           <div className="absolute inset-0 bg-background/72" />
         </div>
 
-        <div className="absolute right-5 top-24 z-10 lg:right-8">
+        <div className="absolute right-4 top-20 z-10 sm:top-24 lg:right-8">
           <span className="inline-flex items-center gap-2 rounded-sm border border-accent bg-accent/25 px-3.5 py-1.5 text-[11px] uppercase tracking-[0.18em] text-foreground">
             <Landmark className="h-3.5 w-3.5" /> UNESCO Heritage 2022
           </span>
         </div>
 
-        <div className="mx-auto w-full max-w-7xl px-5 py-32 lg:px-8">
+        <div className="mx-auto w-full max-w-7xl px-5 py-24 sm:py-32 lg:px-8">
           <Reveal>
             <p className="mb-6 text-xs uppercase tracking-[0.3em] text-primary">
               {t("Làng gốm Bàu Trúc · Khánh Hòa", "Bàu Trúc pottery village · Khánh Hòa")}
             </p>
-            <h1 className="max-w-4xl font-display text-5xl leading-[1.05] sm:text-6xl lg:text-7xl">
+            <h1 className="max-w-4xl font-display text-[2.4rem] leading-[1.08] sm:text-6xl lg:text-7xl">
               {t("Đất hóa hồn — Tay giữ lửa", "Clay Becomes Soul — Hands Keep the Fire")}
             </h1>
             <p className="mt-6 font-serif text-xl italic text-wood sm:text-2xl">
@@ -122,16 +122,16 @@ function Home() {
                 "Every piece is one of a kind — shaped entirely by the hands of Cham artisans from natural clay of Bàu Trúc village, Khánh Hòa.",
               )}
             </p>
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
               <Link
                 to="/san-pham"
-                className="inline-flex items-center gap-2 rounded-sm bg-primary px-7 py-3.5 text-sm tracking-wide text-primary-foreground transition-colors hover:bg-wood"
+                className="inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-7 py-3.5 text-sm tracking-wide text-primary-foreground transition-colors hover:bg-wood"
               >
                 {t("Khám Phá Sản Phẩm", "Explore Products")} <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 to="/trai-nghiem"
-                className="inline-flex items-center rounded-sm border border-primary px-7 py-3.5 text-sm tracking-wide text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                className="inline-flex items-center justify-center rounded-sm border border-primary px-7 py-3.5 text-sm tracking-wide text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
               >
                 {t("Đặt Lịch Trải Nghiệm", "Book an Experience")}
               </Link>
@@ -156,8 +156,8 @@ function Home() {
       </section>
 
       {/* Story teaser */}
-      <section className="mx-auto max-w-7xl px-5 py-24 lg:px-8">
-        <div className="grid items-center gap-14 lg:grid-cols-2">
+      <section className="mx-auto max-w-7xl px-5 py-16 sm:py-24 lg:px-8">
+        <div className="grid items-center gap-10 sm:gap-14 lg:grid-cols-2">
           <Reveal>
             <div className="aspect-4/3 overflow-hidden rounded-sm border border-primary/25">
               <img

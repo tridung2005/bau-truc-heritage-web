@@ -20,7 +20,7 @@ export function ScrollToTop() {
       aria-label={t("Lên đầu trang", "Back to top")}
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       className={cn(
-        "fixed bottom-6 right-5 z-50 rounded-sm border border-primary/50 bg-primary p-3 text-primary-foreground shadow-[0_10px_28px_rgba(44,26,14,0.28)] transition-all duration-300 hover:bg-wood lg:right-8",
+        "fixed bottom-[86px] right-4 z-50 lg:bottom-6 rounded-sm border border-primary/50 bg-primary p-3 text-primary-foreground shadow-[0_10px_28px_rgba(44,26,14,0.28)] transition-all duration-300 hover:bg-wood lg:right-8",
         visible ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-3 opacity-0",
       )}
     >

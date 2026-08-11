@@ -16,6 +16,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { Toaster } from "@/components/ui/sonner";
 import { CartSheet } from "@/components/CartSheet";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { MobileActionBar } from "@/components/MobileActionBar";
 import { I18nProvider } from "@/lib/i18n";
 import { ThemeProvider } from "@/lib/theme";
 import { CartProvider } from "@/lib/cart";
@@ -94,7 +95,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap&subset=vietnamese,latin-ext,latin",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
@@ -131,6 +132,7 @@ function RootComponent() {
             {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
             <Outlet />
             <SiteFooter />
+            <MobileActionBar />
             <CartSheet />
             <ScrollToTop />
             <Toaster />
