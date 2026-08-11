@@ -87,7 +87,7 @@ export function SiteHeader() {
       className={cn(
         "sticky top-0 z-50 transition-all duration-300",
         scrolled || open
-          ? "bg-background/95 shadow-[0_2px_16px_rgba(44,26,14,0.12)] backdrop-blur-sm"
+          ? "bg-background shadow-[0_2px_16px_rgba(44,26,14,0.12)]"
           : "bg-background/0",
       )}
     >
@@ -138,7 +138,7 @@ export function SiteHeader() {
       {/* Mobile full-screen drawer */}
       <div
         className={cn(
-          "fixed inset-x-0 bottom-0 top-[60px] z-40 overflow-y-auto border-t border-border bg-background transition-all duration-300 lg:hidden",
+          "fixed inset-x-0 bottom-0 top-[57px] sm:top-[68px] z-40 overflow-y-auto border-t border-border bg-background transition-all duration-300 lg:hidden",
           open ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0",
         )}
       >
