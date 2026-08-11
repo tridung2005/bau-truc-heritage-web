@@ -116,13 +116,19 @@
 
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-optical-sizing: auto;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
   h1,
@@ -131,8 +137,38 @@
   h4 {
     font-family: var(--font-display);
     font-weight: 600;
+    text-wrap: balance;
+    /* Vietnamese diacritics need a touch more room above the cap height */
+    line-height: 1.18;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  /* Comfortable reading rhythm on small screens */
+  @media (max-width: 640px) {
+    body {
+      font-size: 15.5px;
+      line-height: 1.7;
+    }
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: color-mix(in oklab, var(--clay) 22%, transparent);
   }
 }
+
+/* Respect iOS home-indicator / notch */
+@utility safe-b {
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 0.75rem);
+}
+
 
 /* Subtle grain/noise overlay for hero sections */
 @utility grain {
