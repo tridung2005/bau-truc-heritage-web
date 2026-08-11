@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Menu, Moon, ShoppingBag, Sun, X } from "lucide-react";
+import { ArrowRight, Menu, Moon, Phone, ShoppingBag, Sun, X } from "lucide-react";
 import { PotIcon } from "./PotIcon";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/lib/i18n";
