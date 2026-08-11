@@ -29,61 +29,74 @@ export function SiteHeader() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const controls = (
-    <div className="flex items-center gap-2">
-      <div className="flex items-center rounded-sm border border-border">
-        {(["vi", "en"] as const).map((l) => (
-          <button
-            key={l}
-            type="button"
-            onClick={() => setLang(l)}
-            aria-pressed={lang === l}
-            className={cn(
-              "px-2.5 py-1.5 text-xs uppercase tracking-[0.12em] transition-colors",
-              lang === l ? "bg-primary text-primary-foreground" : "text-foreground/70 hover:text-primary",
-            )}
-          >
-            {l === "vi" ? "VIE" : "ENG"}
-          </button>
-        ))}
-      </div>
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
-      <button
-        type="button"
-        onClick={toggleTheme}
-        aria-label={t("Đổi nền sáng/tối", "Toggle light/dark theme")}
-        className="rounded-sm border border-border p-2 text-foreground/80 transition-colors hover:border-primary hover:text-primary"
-      >
-        {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-      </button>
-
-      <button
-        type="button"
-        onClick={() => setCartOpen(true)}
-        aria-label={t("Mở giỏ hàng", "Open cart")}
-        className="relative rounded-sm border border-border p-2 text-foreground/80 transition-colors hover:border-primary hover:text-primary"
-      >
-        <ShoppingBag className="h-4 w-4" />
-        {count > 0 && (
-          <span className="absolute -right-2 -top-2 min-w-5 rounded-full bg-primary px-1.5 py-0.5 text-[10px] leading-none text-primary-foreground">
-            {count}
-          </span>
-        )}
-      </button>
+  const langSwitch = (
+    <div className="flex items-center rounded-sm border border-border">
+      {(["vi", "en"] as const).map((l) => (
+        <button
+          key={l}
+          type="button"
+          onClick={() => setLang(l)}
+          aria-pressed={lang === l}
+          className={cn(
+            "px-2.5 py-1.5 text-xs uppercase tracking-[0.12em] transition-colors",
+            lang === l ? "bg-primary text-primary-foreground" : "text-foreground/70 hover:text-primary",
+          )}
+        >
+          {l === "vi" ? "VIE" : "ENG"}
+        </button>
+      ))}
     </div>
+  );
+
+  const themeBtn = (
+    <button
+      type="button"
+      onClick={toggleTheme}
+      aria-label={t("Đổi nền sáng/tối", "Toggle light/dark theme")}
+      className="rounded-sm border border-border p-2.5 text-foreground/80 transition-colors hover:border-primary hover:text-primary"
+    >
+      {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+    </button>
+  );
+
+  const cartBtn = (
+    <button
+      type="button"
+      onClick={() => setCartOpen(true)}
+      aria-label={t("Mở giỏ hàng", "Open cart")}
+      className="relative rounded-sm border border-border p-2.5 text-foreground/80 transition-colors hover:border-primary hover:text-primary"
+    >
+      <ShoppingBag className="h-4 w-4" />
+      {count > 0 && (
+        <span className="absolute -right-2 -top-2 min-w-5 rounded-full bg-primary px-1.5 py-0.5 text-center text-[10px] leading-none text-primary-foreground">
+          {count}
+        </span>
+      )}
+    </button>
   );
 
   return (
     <header
       className={cn(
         "sticky top-0 z-50 transition-all duration-300",
-        scrolled ? "bg-background shadow-[0_2px_16px_rgba(44,26,14,0.12)]" : "bg-background/0",
+        scrolled || open
+          ? "bg-background/95 shadow-[0_2px_16px_rgba(44,26,14,0.12)] backdrop-blur-sm"
+          : "bg-background/0",
       )}
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-4 lg:px-8">
+      <div className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 py-3 sm:px-5 sm:py-4 lg:px-8">
         <Link to="/" className="flex min-w-0 items-center gap-2.5" onClick={() => setOpen(false)}>
           <PotIcon className="h-7 w-7 shrink-0 text-primary" />
-          <span className="truncate font-display text-2xl tracking-tight text-foreground">Đàng Xem</span>
+          <span className="truncate font-display text-xl tracking-tight text-foreground sm:text-2xl">
+            Đàng Xem
+          </span>
         </Link>
 
         <div className="hidden items-center gap-8 lg:flex">
@@ -101,38 +114,73 @@ export function SiteHeader() {
               </Link>
             ))}
           </nav>
-          {controls}
+          <div className="flex items-center gap-2">
+            {langSwitch}
+            {themeBtn}
+            {cartBtn}
+          </div>
         </div>
 
         <div className="flex items-center gap-2 justify-self-end lg:hidden">
-          {controls}
+          {cartBtn}
           <button
             type="button"
             aria-label={t("Mở menu", "Open menu")}
+            aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="rounded-sm border border-border p-2 text-foreground"
+            className="rounded-sm border border-border p-2.5 text-foreground"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
 
-      {open && (
-        <nav className="border-t border-border bg-background px-5 pb-5 lg:hidden">
-          {NAV_LINKS.map((l) => (
+      {/* Mobile full-screen drawer */}
+      <div
+        className={cn(
+          "fixed inset-x-0 bottom-0 top-[60px] z-40 overflow-y-auto border-t border-border bg-background transition-all duration-300 lg:hidden",
+          open ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0",
+        )}
+      >
+        <nav className="px-5 pt-2">
+          {NAV_LINKS.map((l, i) => (
             <Link
               key={l.to}
               to={l.to}
               onClick={() => setOpen(false)}
               activeOptions={{ exact: l.to === "/" }}
               activeProps={{ className: "text-primary" }}
-              className="block border-b border-border/60 py-3.5 text-base text-foreground/80"
+              inactiveProps={{ className: "text-foreground/85" }}
+              className="flex items-center justify-between border-b border-border/60 py-4 font-display text-2xl"
             >
-              {t(l.vi, l.en)}
+              <span>{t(l.vi, l.en)}</span>
+              <span className="text-xs tracking-[0.2em] text-primary/60">0{i + 1}</span>
             </Link>
           ))}
         </nav>
-      )}
+
+        <div className="mt-6 grid gap-3 px-5">
+          <Link
+            to="/trai-nghiem"
+            onClick={() => setOpen(false)}
+            className="inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-6 py-3.5 text-sm tracking-wide text-primary-foreground"
+          >
+            {t("Đặt Lịch Trải Nghiệm", "Book an Experience")} <ArrowRight className="h-4 w-4" />
+          </Link>
+          <a
+            href="tel:+84906123456"
+            className="inline-flex items-center justify-center gap-2 rounded-sm border border-primary px-6 py-3.5 text-sm tracking-wide text-primary"
+          >
+            <Phone className="h-4 w-4" /> {t("Gọi nghệ nhân", "Call the artisan")}
+          </a>
+        </div>
+
+        <div className="mt-6 flex items-center justify-between px-5 safe-b">
+          {langSwitch}
+          {themeBtn}
+        </div>
+      </div>
     </header>
   );
 }
+
