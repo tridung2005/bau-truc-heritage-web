@@ -20,6 +20,7 @@ export const Route = createFileRoute("/lien-he")({
         content: "Kết nối với xưởng gốm Chăm Đàng Xem — đặt hàng, workshop và hợp tác B2B.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://bau-truc-heritage-web.lovable.app/lien-he" }],
   }),
   component: Contact,
 });

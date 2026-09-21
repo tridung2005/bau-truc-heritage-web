@@ -29,6 +29,7 @@ export const Route = createFileRoute("/san-pham")({
         content: "Từng sản phẩm — một câu chuyện. Gốm Chăm thủ công, nung lộ thiên truyền thống.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://bau-truc-heritage-web.lovable.app/san-pham" }],
   }),
   component: Products,
 });

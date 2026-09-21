@@ -26,6 +26,7 @@ export const Route = createFileRoute("/")({
         content: "Đất hóa hồn — Tay giữ lửa. Gốm thủ công Chăm Bàu Trúc, Di sản UNESCO 2022.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://bau-truc-heritage-web.lovable.app/" }],
   }),
   component: Home,
 });
