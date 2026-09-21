@@ -136,6 +136,7 @@ function RootComponent() {
             <MobileActionBar />
             <CartSheet />
             <ScrollToTop />
+            <ChatFab />
             <Toaster />
           </CartProvider>
         </I18nProvider>
