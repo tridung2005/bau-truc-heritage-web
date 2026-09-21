@@ -26,6 +26,7 @@ export const Route = createFileRoute("/")({
         content: "Đất hóa hồn — Tay giữ lửa. Gốm thủ công Chăm Bàu Trúc, Di sản UNESCO 2022.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://bau-truc-heritage-web.lovable.app/" }],
   }),
   component: Home,
 });
@@ -142,9 +143,13 @@ function Home() {
 
       {/* Trust bar */}
       <section className="rule-clay border-b border-primary/45">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:grid-cols-3 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-4 px-5 py-12 sm:grid-cols-3 sm:gap-10 sm:py-14 lg:px-8">
           {TRUST.map(({ icon: Icon, vi, en, dVi, dEn }, i) => (
-            <Reveal key={vi} delay={i * 90} className="flex gap-4">
+            <Reveal
+              key={vi}
+              delay={i * 90}
+              className="flex w-full gap-4 rounded-sm border border-border bg-card p-4 sm:border-0 sm:bg-transparent sm:p-0"
+            >
               <Icon className="mt-1 h-8 w-8 shrink-0 text-primary" />
               <div className="min-w-0">
                 <h3 className="font-display text-xl">{t(vi, en)}</h3>
@@ -286,10 +291,10 @@ function Home() {
           ))}
         </div>
         <div className="mt-8 flex justify-center gap-4">
-          <a href="#" aria-label="TikTok" className="rounded-sm border border-primary/40 p-2.5 text-primary hover:bg-primary hover:text-primary-foreground">
+          <a href="#" aria-label="TikTok" className="grid min-h-11 min-w-11 place-items-center rounded-sm border border-primary/40 text-primary hover:bg-primary hover:text-primary-foreground">
             <MusicIcon />
           </a>
-          <a href="#" aria-label="Instagram" className="rounded-sm border border-primary/40 p-2.5 text-primary hover:bg-primary hover:text-primary-foreground">
+          <a href="#" aria-label="Instagram" className="grid min-h-11 min-w-11 place-items-center rounded-sm border border-primary/40 text-primary hover:bg-primary hover:text-primary-foreground">
             <InstaIcon />
           </a>
         </div>

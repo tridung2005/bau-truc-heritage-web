@@ -29,6 +29,7 @@ export const Route = createFileRoute("/trai-nghiem")({
         content: "Chạm tay vào lịch sử — workshop làm gốm thủ công Chăm tại Khánh Hòa.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://bau-truc-heritage-web.lovable.app/trai-nghiem" }],
   }),
   component: Experience,
 });

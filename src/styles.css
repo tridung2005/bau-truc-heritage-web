@@ -160,6 +160,22 @@
       font-size: 15.5px;
       line-height: 1.7;
     }
+
+    /* iOS Safari zooms in on fields under 16px */
+    input,
+    select,
+    textarea {
+      font-size: 16px;
+    }
+
+    h1 {
+      line-height: 1.25;
+    }
+
+    h2,
+    h3 {
+      line-height: 1.3;
+    }
   }
 
   button,
@@ -169,6 +185,18 @@
   textarea {
     -webkit-tap-highlight-color: color-mix(in oklab, var(--clay) 22%, transparent);
   }
+
+  /* Mobile has no :hover — make presses visible everywhere */
+  button:active,
+  a:active {
+    transform: scale(0.985);
+  }
+}
+
+/* Minimum comfortable touch target */
+@utility tap {
+  min-height: 44px;
+  min-width: 44px;
 }
 
 /* Respect iOS home-indicator / notch */

@@ -19,6 +19,7 @@ export const Route = createFileRoute("/ve-chung-toi")({
         content: "Người gìn giữ linh hồn gốm Chăm tại làng Bàu Trúc, Khánh Hòa.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://bau-truc-heritage-web.lovable.app/ve-chung-toi" }],
   }),
   component: About,
 });

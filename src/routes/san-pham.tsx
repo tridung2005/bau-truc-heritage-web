@@ -29,6 +29,7 @@ export const Route = createFileRoute("/san-pham")({
         content: "Từng sản phẩm — một câu chuyện. Gốm Chăm thủ công, nung lộ thiên truyền thống.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://bau-truc-heritage-web.lovable.app/san-pham" }],
   }),
   component: Products,
 });
@@ -153,7 +154,7 @@ function Products() {
               key={f.key}
               type="button"
               onClick={() => setActive(f.key)}
-              className={`rounded-sm border px-5 py-2 text-sm transition-colors ${
+              className={`min-h-11 rounded-sm border px-5 py-2 text-sm transition-colors ${
                 active === f.key
                   ? "border-primary bg-primary text-primary-foreground"
                   : "border-border text-muted-foreground hover:border-primary hover:text-primary"
@@ -189,7 +190,9 @@ function Products() {
                   <p className="mt-2 line-clamp-3 flex-1 text-xs leading-relaxed text-muted-foreground sm:mt-3 sm:line-clamp-none sm:text-sm">
                     {t(p.descVi, p.descEn)}
                   </p>
-                  <p className="mt-3 text-sm text-primary sm:mt-4">{t(p.priceVi, p.priceEn)}</p>
+                  <p className="mt-3 text-sm font-semibold text-foreground sm:mt-4">
+                    {t(p.priceVi, p.priceEn)}
+                  </p>
                   <div className="mt-4 flex flex-col gap-2 sm:mt-5 sm:flex-row sm:flex-wrap sm:gap-3">
                     <button
                       type="button"
@@ -205,14 +208,14 @@ function Products() {
                           },
                         );
                       }}
-                      className="inline-flex items-center justify-center gap-2 rounded-sm bg-primary px-4 py-2.5 text-xs text-primary-foreground transition-colors hover:bg-wood sm:px-5 sm:text-sm"
+                      className="inline-flex min-h-11 items-center justify-center gap-2 rounded-sm bg-primary px-4 py-2.5 text-xs text-primary-foreground transition-colors hover:bg-wood active:bg-wood sm:px-5 sm:text-sm"
                     >
                       <ShoppingBag className="hidden h-4 w-4 sm:block" />
                       <span className="whitespace-nowrap">{t("Thêm Vào Giỏ", "Add to Cart")}</span>
                     </button>
                     <Link
                       to="/lien-he"
-                      className="inline-flex items-center justify-center gap-2 rounded-sm border border-primary px-4 py-2.5 text-xs text-primary transition-colors hover:bg-primary hover:text-primary-foreground sm:px-5 sm:text-sm"
+                      className="inline-flex min-h-11 items-center justify-center gap-2 rounded-sm border border-primary px-4 py-2.5 text-xs text-primary transition-colors hover:bg-primary hover:text-primary-foreground sm:px-5 sm:text-sm"
                     >
                       <span className="whitespace-nowrap">{t("Tìm Hiểu Thêm", "Learn More")}</span> <ArrowRight className="h-4 w-4 shrink-0" />
                     </Link>
