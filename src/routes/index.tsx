@@ -143,9 +143,13 @@ function Home() {
 
       {/* Trust bar */}
       <section className="rule-clay border-b border-primary/45">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:grid-cols-3 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-4 px-5 py-12 sm:grid-cols-3 sm:gap-10 sm:py-14 lg:px-8">
           {TRUST.map(({ icon: Icon, vi, en, dVi, dEn }, i) => (
-            <Reveal key={vi} delay={i * 90} className="flex gap-4">
+            <Reveal
+              key={vi}
+              delay={i * 90}
+              className="flex w-full gap-4 rounded-sm border border-border bg-card p-4 sm:border-0 sm:bg-transparent sm:p-0"
+            >
               <Icon className="mt-1 h-8 w-8 shrink-0 text-primary" />
               <div className="min-w-0">
                 <h3 className="font-display text-xl">{t(vi, en)}</h3>

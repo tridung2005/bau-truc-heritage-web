@@ -17,6 +17,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { CartSheet } from "@/components/CartSheet";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { MobileActionBar } from "@/components/MobileActionBar";
+import { ChatFab } from "@/components/ChatFab";
 import { I18nProvider } from "@/lib/i18n";
 import { ThemeProvider } from "@/lib/theme";
 import { CartProvider } from "@/lib/cart";
