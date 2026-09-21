@@ -45,7 +45,7 @@ export function SiteHeader() {
           onClick={() => setLang(l)}
           aria-pressed={lang === l}
           className={cn(
-            "px-2.5 py-1.5 text-xs uppercase tracking-[0.12em] transition-colors",
+            "min-h-11 px-3.5 text-xs uppercase tracking-[0.12em] transition-colors",
             lang === l ? "bg-primary text-primary-foreground" : "text-foreground/70 hover:text-primary",
           )}
         >
@@ -60,7 +60,7 @@ export function SiteHeader() {
       type="button"
       onClick={toggleTheme}
       aria-label={t("Đổi nền sáng/tối", "Toggle light/dark theme")}
-      className="rounded-sm border border-border p-2.5 text-foreground/80 transition-colors hover:border-primary hover:text-primary"
+      className="tap grid place-items-center rounded-sm border border-border text-foreground/80 transition-colors hover:border-primary hover:text-primary"
     >
       {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
     </button>
@@ -71,7 +71,7 @@ export function SiteHeader() {
       type="button"
       onClick={() => setCartOpen(true)}
       aria-label={t("Mở giỏ hàng", "Open cart")}
-      className="relative rounded-sm border border-border p-2.5 text-foreground/80 transition-colors hover:border-primary hover:text-primary"
+      className="tap relative grid place-items-center rounded-sm border border-border text-foreground/80 transition-colors hover:border-primary hover:text-primary"
     >
       <ShoppingBag className="h-4 w-4" />
       {count > 0 && (
@@ -128,7 +128,7 @@ export function SiteHeader() {
             aria-label={t("Mở menu", "Open menu")}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="rounded-sm border border-border p-2.5 text-foreground"
+            className="tap grid place-items-center rounded-sm border border-border text-foreground"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>

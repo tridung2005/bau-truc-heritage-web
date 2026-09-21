@@ -190,7 +190,9 @@ function Products() {
                   <p className="mt-2 line-clamp-3 flex-1 text-xs leading-relaxed text-muted-foreground sm:mt-3 sm:line-clamp-none sm:text-sm">
                     {t(p.descVi, p.descEn)}
                   </p>
-                  <p className="mt-3 text-sm text-primary sm:mt-4">{t(p.priceVi, p.priceEn)}</p>
+                  <p className="mt-3 text-sm font-semibold text-foreground sm:mt-4">
+                    {t(p.priceVi, p.priceEn)}
+                  </p>
                   <div className="mt-4 flex flex-col gap-2 sm:mt-5 sm:flex-row sm:flex-wrap sm:gap-3">
                     <button
                       type="button"
