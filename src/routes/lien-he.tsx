@@ -82,7 +82,7 @@ function Contact() {
                   key={label}
                   href="#"
                   aria-label={label}
-                  className="rounded-sm border border-primary/40 p-2.5 text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                  className="grid min-h-11 min-w-11 place-items-center rounded-sm border border-primary/40 text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
                 >
                   <Icon className="h-4 w-4" />
                 </a>

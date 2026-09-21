@@ -291,10 +291,10 @@ function Home() {
           ))}
         </div>
         <div className="mt-8 flex justify-center gap-4">
-          <a href="#" aria-label="TikTok" className="rounded-sm border border-primary/40 p-2.5 text-primary hover:bg-primary hover:text-primary-foreground">
+          <a href="#" aria-label="TikTok" className="grid min-h-11 min-w-11 place-items-center rounded-sm border border-primary/40 text-primary hover:bg-primary hover:text-primary-foreground">
             <MusicIcon />
           </a>
-          <a href="#" aria-label="Instagram" className="rounded-sm border border-primary/40 p-2.5 text-primary hover:bg-primary hover:text-primary-foreground">
+          <a href="#" aria-label="Instagram" className="grid min-h-11 min-w-11 place-items-center rounded-sm border border-primary/40 text-primary hover:bg-primary hover:text-primary-foreground">
             <InstaIcon />
           </a>
         </div>
